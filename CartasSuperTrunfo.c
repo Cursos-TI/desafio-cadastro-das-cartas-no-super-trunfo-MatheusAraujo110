@@ -17,7 +17,6 @@
 
 #include <stdio.h>
 
-// Estrutura para representar uma carta
 struct Carta {
     char estado;
     char codigo[4];
