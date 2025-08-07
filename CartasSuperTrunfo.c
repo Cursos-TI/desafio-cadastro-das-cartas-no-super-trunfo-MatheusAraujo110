@@ -1,51 +1,37 @@
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-// Teste larissa
-
-// Sugestão: Defina variáveis separadas para cada atributo da cidade.
-// Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-
-// Cadastro das Cartas:
-// Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-// Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-
-// Exibição dos Dados das Cartas:
-// Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-// Exiba os valores inseridos para cada atributo da cidade, um por linha.
-
 #include <stdio.h>
 
-struct Carta {
+struct Carta
+{
     char estado;
     char codigo[4];
     char nomeCidade[50];
     int populacao;
-    float area;       
-    float pib;      
+    float area;
+    float pib;
     int pontosTuristicos;
 };
 
-int main() {
+int main()
+{
     struct Carta cartas[2];
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
+    {
         printf("\nInforme os dados da Carta %d:\n", i + 1);
 
         printf("Estado (letra de A a H): ");
-        scanf(" %c", &cartas[i].estado);
+        scanf(" %c", &cartas[i].estado); // Espaço antes do %c limpa o buffer
 
-        printf("Código da Carta (ex: A01 a A04): ");
+        printf("Código da Carta (ex: A01): ");
         scanf("%s", cartas[i].codigo);
 
         printf("Nome da Cidade: ");
-        scanf(" %[^\n]", cartas[i].nomeCidade);
+        scanf(" %[^\n]", cartas[i].nomeCidade); // Lê até o final da linha (inclusive com espaços)
 
         printf("População: ");
         scanf("%d", &cartas[i].populacao);
 
-        printf("Área (em km²): ");
+        printf("Área em km²: ");
         scanf("%f", &cartas[i].area);
 
         printf("PIB (em bilhões de reais): ");
@@ -55,7 +41,11 @@ int main() {
         scanf("%d", &cartas[i].pontosTuristicos);
     }
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
+    {
+        float densidade = cartas[i].populacao / cartas[i].area;
+        float pibPerCapita = (cartas[i].pib * 1000000000) / cartas[i].populacao;
+
         printf("\nCarta %d:\n", i + 1);
         printf("Estado: %c\n", cartas[i].estado);
         printf("Código: %s\n", cartas[i].codigo);
@@ -64,8 +54,9 @@ int main() {
         printf("Área: %.2f km²\n", cartas[i].area);
         printf("PIB: %.2f bilhões de reais\n", cartas[i].pib);
         printf("Número de Pontos Turísticos: %d\n", cartas[i].pontosTuristicos);
+        printf("Densidade Populacional: %.2f hab/km²\n", densidade);
+        printf("PIB per Capita: %.2f reais\n", pibPerCapita);
     }
 
     return 0;
 }
-
