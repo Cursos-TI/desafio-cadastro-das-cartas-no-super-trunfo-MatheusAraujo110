@@ -18,45 +18,25 @@ int main()
     for (int i = 0; i < 2; i++)
     {
         printf("\nInforme os dados da Carta %d:\n", i + 1);
-
-        printf("Estado (letra de A a H): ");
-        scanf(" %c", &cartas[i].estado); // Espaço antes do %c limpa o buffer
-
-        printf("Código da Carta (ex: A01): ");
+        scanf(" %c", &cartas[i].estado);
         scanf("%s", cartas[i].codigo);
-
-        printf("Nome da Cidade: ");
-        scanf(" %[^\n]", cartas[i].nomeCidade); // Lê até o final da linha (inclusive com espaços)
-
-        printf("População: ");
+        scanf(" %[^\n]", cartas[i].nomeCidade);
         scanf("%d", &cartas[i].populacao);
-
-        printf("Área em km²: ");
         scanf("%f", &cartas[i].area);
-
-        printf("PIB (em bilhões de reais): ");
         scanf("%f", &cartas[i].pib);
-
-        printf("Número de Pontos Turísticos: ");
         scanf("%d", &cartas[i].pontosTuristicos);
     }
 
-    for (int i = 0; i < 2; i++)
-    {
-        float densidade = cartas[i].populacao / cartas[i].area;
-        float pibPerCapita = (cartas[i].pib * 1000000000) / cartas[i].populacao;
+    printf("\n=== Comparacao de Cartas (Atributo: Populacao) ===\n");
+    printf("Carta 1 - %s (%c): %d\n", cartas[0].nomeCidade, cartas[0].estado, cartas[0].populacao);
+    printf("Carta 2 - %s (%c): %d\n", cartas[1].nomeCidade, cartas[1].estado, cartas[1].populacao);
 
-        printf("\nCarta %d:\n", i + 1);
-        printf("Estado: %c\n", cartas[i].estado);
-        printf("Código: %s\n", cartas[i].codigo);
-        printf("Nome da Cidade: %s\n", cartas[i].nomeCidade);
-        printf("População: %d\n", cartas[i].populacao);
-        printf("Área: %.2f km²\n", cartas[i].area);
-        printf("PIB: %.2f bilhões de reais\n", cartas[i].pib);
-        printf("Número de Pontos Turísticos: %d\n", cartas[i].pontosTuristicos);
-        printf("Densidade Populacional: %.2f hab/km²\n", densidade);
-        printf("PIB per Capita: %.2f reais\n", pibPerCapita);
-    }
+    if (cartas[0].populacao > cartas[1].populacao)
+        printf("Resultado: Carta 1 (%s) venceu!\n", cartas[0].nomeCidade);
+    else if (cartas[1].populacao > cartas[0].populacao)
+        printf("Resultado: Carta 2 (%s) venceu!\n", cartas[1].nomeCidade);
+    else
+        printf("Resultado: Empate!\n");
 
     return 0;
 }
